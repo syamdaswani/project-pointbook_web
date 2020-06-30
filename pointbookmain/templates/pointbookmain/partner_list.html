@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="shadows">
+	<div class="darkheader">
+		<h4 class="inlineheader">Partner Profile</h4>
+	</div>
+	
+	<div class="paddingbody">
+		
+		{% if not partners %}
+				<h5>No Partners Yet</h5>
+		{% else %}
+			<table class="u-full-width">
+				<thead>
+				<tr>
+					<th>Key</th>
+					<th>Designation</th>
+					<th>Contact Person</th>
+					<th>View</th>
+					<th>Edit</th>
+				</tr>
+				</thead>
+			{% for partner in partners %}
+				<tbody>
+				<tr>
+					<td>{{ partner.user_key }} </td>
+					<td>{{ partner.designation }} </td>
+					<td>{{ partner.contact_person }}</td>
+					<td><a href="{% url 'partner_profile' partner.id %}"><button>View</button></a></td>
+					<td><a href="{% url 'partner_profile_edit' partner.id %}"><button>Edit</button></a></td>
+					<td><a href="{% url 'partner_profile_delete' partner.id %}"><button>Delete</button></a></td>
+
+				</tr>
+				</tbody>
+			{% endfor %}
+		{% endif %}
+		</table>
+	</div>
+</div>
+
+{% endblock %}
+

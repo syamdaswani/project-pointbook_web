@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="linknavi"> 
+	<a href="{% url 'login' %}"><button>Login</button></a>   
+	<a href="{% url 'signup' %}"><button>Signup</button></a> 
+</div>
+
+<div class="shadows">
+	<div class="darkheader">
+		<img src="{% static "tlocator/images/account.png" %}" height="40" width="40" /> 		
+		<h3 class="inlineheader">Signup</h3>
+	</div>
+	
+	<div class="paddingbody">
+		<form action="" method="POST">
+
+		{% csrf_token %}
+
+			{% if form.login_form.errors %}
+			<ol>
+				{% for error in form.login_form.errors %}
+					<li><strong>{{ error|escape }}</strong></li>
+				{% endfor %}
+			</ol>
+			{% endif %}	
+				
+			<table class="u-full-width">
+			{{ signup_form.as_table }}
+			</table>
+			<input class="button-primary" type='submit' value="Signup">
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+
+

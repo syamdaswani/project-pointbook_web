@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>PointBook</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" lang="en" content="ADD SITE DESCRIPTION">
+		<meta name="author" content="ADD AUTHOR INFORMATION">
+		<meta name="robots" content="index, follow">
+
+		<!-- icons -->
+		<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+		<link rel="shortcut icon" href="favicon.ico">
+
+		<!-- Override CSS file - add your own CSS rules -->
+		<link href='https://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{% static 'pointbookmain/css/style.css' %}">
+		
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="{% static 'pointbookmain/js/nav.js' %}"></script>
+	</head>
+
+	<body>
+		{% block header %}
+		<div class="headerbackground">
+			<div class="headerdesign">
+					<img src="{% static "pointbookmain/images/test.png" %}" height="40" width="40" />
+					{% block title %}PointBook{% endblock %}
+					<div class="smalltext">PointBook</div>
+			</div>
+		</div>
+		{% endblock %}
+		<div class='container'>
+		<div id='cssmenu'>
+			<ul>
+			</ul>
+		</div>
+		</div>
+
+		<div class="content">
+			<div class="container">
+				
+				<div class="main">
+					{% block content %}
+					{% endblock %}
+				</div>
+				
+				<div class="aside">
+					{% block sidebar %}	
+					{% if user.is_authenticated %}
+						<div class="darkheader"><img src="{% static "tlocator/images/account.png" %}" height="35" width="35" /> <h6 class="inlineheader"><b>You are logged in as:</b> <br>{{ user }}</h6></div>
+					{% else %}
+						<div class="darkheader"><h6>You are not logged in</h6></div>
+					{% endif %}
+					<div class="paddingbody">
+						<p>It is {% now "F j, Y, h:i:s A" %}</p>
+					{% endblock %}
+					</div>
+				</div>
+			</div>	
+		</div>
+		
+		{% block footer %}
+		<div class="out">
+			<div class="footer">
+				<div class="container">
+					&copy; Copyright 2017
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+	</body>
+</html>

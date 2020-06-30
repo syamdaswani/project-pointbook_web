@@ -1,0 +1,22 @@
+
+	<div class="paddingbody">
+
+	<hr>
+		<h5>Send Text Notification:</h5>
+		<form action="" method="POST">
+		{% csrf_token %}
+
+			<table class="u-full-width">
+				{% if form.partner_service_form.errors %}
+				<ol>
+					{% for error in form.partner_service_form.errors %}
+						<li><strong>{{ error|escape }}</strong></li>
+					{% endfor %}
+				</ol>
+				{% endif %}
+			{{ partner_service_form.as_table }}
+			</table>
+			<input class="button-primary" type='submit' value="Send">
+		</form>
+	</div>
+
